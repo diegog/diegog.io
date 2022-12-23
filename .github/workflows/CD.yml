@@ -25,4 +25,5 @@ jobs:
           aws s3 sync ./build s3://"$S3_BUCKET"
         env:
           S3_BUCKET: ${{ secrets.S3_BUCKET }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
       
