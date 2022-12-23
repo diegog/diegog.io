@@ -29,9 +29,9 @@
 </script>
 
 <h1 class="text-center">Projects</h1>
-<ul class="container list-group">
+<div class="container list-group">
 	{#each projects as project}
-		<li class="list-group-item list-group-item-action" href={project.url}>
+		<a class="list-group-item list-group-item-action" href={project.url}>
 			<table class="table table-borderless">
 				<tr>
 					<td class="align-middle">
@@ -52,6 +52,6 @@
 					</td>
 				</tr>
 			</table>
-		</li>
+		</a>
 	{/each}
-</ul>
+</div>
