@@ -16,7 +16,7 @@
 			url: 'https://diegog.io',
 			icon: diegogIcon,
 			description:
-				'A simple serverless portfolio website made with vue.js and the serverless framework. Deployed on an AWS S3 bucket and functions deployed on AWS lambda'
+				'A simple serverless portfolio website made with svelte. Deployed on an AWS S3 bucket and cloud functions deployed on AWS lambda'
 		},
 		{
 			name: 'recipes',
