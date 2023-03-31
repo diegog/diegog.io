@@ -15,7 +15,7 @@
 
 		<div class="navbar-nav justify-content-end collapse navbar-collapse" id="navbarNavDropdown">
 			<a class="nav-link" href="https://blog.diegog.io">Blog</a>
-			<a class="nav-link" href="/pub_res.pdf">Resume</a>
+			<a class="nav-link" href="/resume.pdf">Resume</a>
 		</div>
 	</div>
 </nav>
