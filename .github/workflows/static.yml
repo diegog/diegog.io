@@ -4,11 +4,11 @@ name: Deploy to github pages
 on:
   # Runs on pushes targeting the default branch
   workflow_run:
-    workflows: ["Build resume"]
+    workflows: ['Build resume']
     types:
       - completed
-  pull_request: 
-    branches: ["main"]
+  pull_request:
+    branches: ['main']
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -21,7 +21,7 @@ permissions:
 
 # Allow one concurrent deployment
 concurrency:
-  group: "pages"
+  group: 'pages'
   cancel-in-progress: true
 
 jobs:

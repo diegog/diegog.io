@@ -1,4 +1,4 @@
-# diegog.io 
+# diegog.io
 
 Build with sveltekit
 

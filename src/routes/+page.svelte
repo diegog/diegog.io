@@ -1,5 +1,4 @@
 <script>
-	import 'bootstrap/dist/css/bootstrap.min.css';
 	import Navbar from '../lib/components/navbar.svelte';
 	import Sketch from '../lib/components/sketch.svelte';
 	import Bio from '../lib/components/bio.svelte';

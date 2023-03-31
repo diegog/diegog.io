@@ -4,8 +4,8 @@
 		<button
 			class="navbar-toggler"
 			type="button"
-			data-toggle="collapse"
-			data-target="#navbarNavDropdown"
+			data-bs-toggle="collapse"
+			data-bs-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent"
 			aria-expanded="false"
 			aria-label="Toggle navigation"
@@ -13,9 +13,15 @@
 			<span class="navbar-toggler-icon" />
 		</button>
 
-		<div class="navbar-nav justify-content-end collapse navbar-collapse" id="navbarNavDropdown">
-			<a class="nav-link" href="https://blog.diegog.io">Blog</a>
-			<a class="nav-link" href="/resume.pdf">Resume</a>
+		<div class="justify-content-end collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="https://blog.diegog.io">Blog</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/resume.pdf">Resume</a>
+				</li>
+			</ul>
 		</div>
 	</div>
 </nav>

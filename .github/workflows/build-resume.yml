@@ -15,21 +15,21 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      
+
       - name: Copy files to root
         run: cp resume/* .
-      
+
       - name: Build latex document
         run: pdflatex $(pwd)/resume.tex
 
       - name: Move pdf to static folder
         run: mv resume.pdf static/resume.pdf
-      
+
       - name: Commit rendered pdf
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           FILE_TO_COMMIT: static/resume.pdf
-          DESTINATION_BRANCH: main 
+          DESTINATION_BRANCH: main
         run: |
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           export MESSAGE="Build $FILE_TO_COMMIT from latex"
