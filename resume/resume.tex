@@ -1,0 +1,101 @@
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{res} % Use the custom resume.cls style
+
+\usepackage[left=0.5in,top=0.5in,right=0.5in,bottom=0.5in]{geometry} % Document margins
+\usepackage{helvetica}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\newcommand{\tab}[1]{\hspace{.2667\textwidth}\rlap{#1}}
+\newcommand{\itab}[1]{\hspace{0em}\rlap{#1}}
+\name{Diego Garcia} % Your name
+\address{\href{mailto:contact@diegog.dev}{jobs@diegog.dev}} % Your phone number and email
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	EDUCATION SECTION
+%----------------------------------------------------------------------------------------
+\begin{summary}{}
+  Software engineer with a bachelor's degree in computer science specializing in research and data-analysis, with experience in full-stack development, continuous integration/deployment, and AI/ML algorithms.
+\end{summary}
+
+\begin{rSection}{Education}
+
+{\bf University of Miami, Coral Gables, FL}
+\\ {\em Bachelor of Science, Computer Science}
+\\ Minors: Mathematics, Chemistry
+
+{\bf Relevant Courses} \\
+Machine Learning, Artificial Intelligence, Computational Neuroscience, Database Systems, System Programming, Algorithms, Data Structures, Computation Theory
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+%	WORK EXPERIENCE SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Work \& Volunteer Experience}
+
+  {\bf Globant}, Remote \hfill {\em November 2020 - March 2022}
+  \\ {\em Software Engineer}
+  \begin{itemize}[leftmargin=*, topsep=-3pt] \itemsep -5pt
+    \item Create and integrate design plans for high-stake applications
+    \item Test and document thoroughly to ensure applications are high quality, accurate, and functional
+    \item Collaborate with team members and project owners to ship new features with a focus on simplicity, scalability, and reusability
+  \end{itemize}
+  
+  % FREELANCE SECTION
+  {\bf Freelance Sofware Engineer}, Remote \hfill {\em January 2020 - December 2020}
+  \\ {\em Full-stack Developer}
+  \begin{itemize}[leftmargin=*, topsep=-3pt] \itemsep -5pt
+    \item Co-developed platform for agricultural investments
+    % \item Node.js back-end, Vue.js front-end
+    \item Serverless infrastructure on AWS
+  \end{itemize}
+  
+  {\bf Shake-A-Leg Miami}, Miami, FL \hfill {\em August 2011 - September 2019}
+  \\ {\em Student Mentor (Volunteer)}
+  \begin{itemize}[leftmargin=*, topsep=-3pt] \itemsep -5pt
+    \item Mentored physically and developmentally challenged children, teaching them water safety skills and about the wildlife in Biscayne Bay
+    \item Logged over 1000 hours of community service
+  \end{itemize}
+  \end{rSection}
+
+%----------------------------------------------------------------------------------------
+%	TECHNICAL STRENGTHS SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Technical Strengths}
+
+  \begin{tabular}{ @{} >{\bfseries}l @{\hspace{6ex}} l }
+  Programming Languages \ & JavaScript, TypeScript, Python, C, R, Matlab, HTML, CSS \\
+  Software \& Tools & SQL, Git, Unix/Linux, Flask, \LaTeX, Photoshop, Vue, Jupyter \\
+  Cloud-Based Technologies & AWS, Docker, CircleCI
+  \end{tabular}
+  
+  \end{rSection}
+
+%--------------------------------------------------------------------------------
+%    Projects And Seminars
+%-----------------------------------------------------------------------------------------------
+\begin{rSection}{Projects}
+{\bf \href{https://manatee.zone}{manatee.zone}}
+\begin{itemize}[leftmargin=*, topsep=-3pt] \itemsep -5pt
+  \item An easy-to-access data visualization of state-mandated "manatee zones" in Florida
+  \item Created after noticing a rise in uninformed boaters and lack of signage in Biscayne Bay
+  \item Data simplification and cleansing performed with Python
+  \item Continuous development set up with CircleCI
+\end{itemize}
+
+{\bf \href{https://diegog.io}{diegog.io}}
+\begin{itemize}[leftmargin=*, topsep=-3pt] \itemsep -5pt
+  \item A 'serverless' portfolio website deployed on AWS using s3 buckets and lambda functions
+  \item Vue.js front-end communicates with a Flask (Python) API back-end
+  \item Continuous integration/deployment setup with bitbucket pipelines
+\end{itemize}
+
+\end{rSection}
+
+\end{document}
