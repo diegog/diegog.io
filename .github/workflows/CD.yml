@@ -2,8 +2,10 @@
 name: Continuous Deployment
 
 on:
-  push:
-    branches: [ main ]
+  workflow_run:
+    workflows: ["Build resume"]
+    types:
+      - completed
 
 jobs:
   build-and-deploy:

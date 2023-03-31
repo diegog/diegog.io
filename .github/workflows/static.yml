@@ -3,8 +3,10 @@ name: Deploy to github pages
 
 on:
   # Runs on pushes targeting the default branch
-  push:
-    branches: ["main"]
+  workflow_run:
+    workflows: ["Build resume"]
+    types:
+      - completed
   pull_request: 
     branches: ["main"]
 
