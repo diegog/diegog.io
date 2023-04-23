@@ -6,7 +6,6 @@
 </script>
 
 <div id="app">
-	<Navbar />
 	<Sketch />
 	<br />
 	<Bio />
@@ -25,7 +24,7 @@
 		-moz-osx-font-smoothing: grayscale;
 		text-align: center;
 		color: #2c3e50;
-		margin-top: 60px;
+		margin-top: 55px;
 		background: #f4f4f4;
 		max-width: 100%;
 		overflow-x: hidden;
