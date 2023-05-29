@@ -4,16 +4,49 @@
 
 \documentclass{res} % Use the custom resume.cls style
 
-\usepackage[left=0.5in,top=0.5in,right=0.5in,bottom=0.5in]{geometry} % Document margins
+\usepackage[left=0.25in,top=0.25in,right=0.25in,bottom=0.25in]{geometry} % Document margins
 \usepackage{helvetica}
 \usepackage{hyperref}
 \usepackage{enumitem}
 \newcommand{\tab}[1]{\hspace{.2667\textwidth}\rlap{#1}}
 \newcommand{\itab}[1]{\hspace{0em}\rlap{#1}}
 \name{Diego Garcia} % Your name
-\address{\href{mailto:contact@diegog.dev}{jobs@diegog.dev}} % Your phone number and email
+\address{\href{mailto:contact@diegog.dev}{contact@diegog.dev}} % Your phone number and email
 
 \begin{document}
+
+%----------------------------------------------------------------------------------------
+%	WORK EXPERIENCE SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Work \& Volunteer Experience}
+
+  {\bf Tradeshift}, Denver, CO (Remote) \hfill {\em April 2023 - Current}
+  \\ {\em Software Engineer}
+  \begin{itemize}[leftmargin=*, topsep=-3pt] \itemsep -5pt
+    \item[] Main Tech Stack: Node.js, Typescript, Postgres, Kafka, Kubernetes
+    \item Develop and maintain scalable and efficient software solutions, utilizing a variety of programming languages and technologies
+    \item Collaborate closely with cross-functional teams to gather requirements, define rules, and align the solution with business objectives
+    \item Designed a system that analyzes company invoice and payment history to determine funding eligibility
+    \item Implemented a dynamic real-time system to continuously assess eligibility based on a comprehensive set of rules, enabling immediate updates with new information
+  \end{itemize}
+
+  {\bf Globant}, Denver, CO (Remote) \hfill {\em November 2020 - March 2022}
+  \\ {\em Software Engineer}
+  \begin{itemize}[leftmargin=*, topsep=-3pt] \itemsep -5pt
+    \item[] Main Tech Stack: Node.js, Typescript, Vue.js, Postgres
+    \item Developed an application that automated the purchasing and generation of labels, significantly reducing manual effort and improving operational efficiency. 
+    \item Received positive feedback from users and management for the app's contribution to improved package management and streamlined logistics processes.
+    \item Ensured high quality and user-friendliness through rigorous testing and comprehensive documentation, including testing plans and user manuals.
+  \end{itemize}
+  
+  {\bf Shake-A-Leg Miami}, Miami, FL \hfill {\em August 2011 - September 2019}
+  \\ {\em Student Mentor (Volunteer)}
+  \begin{itemize}[leftmargin=*, topsep=-3pt] \itemsep -5pt
+    \item Mentored physically and developmentally challenged children, teaching them water safety skills and about the wildlife in Biscayne Bay
+    \item Logged over 1000 hours of community service
+  \end{itemize}
+  \end{rSection}
 
 %----------------------------------------------------------------------------------------
 %	EDUCATION SECTION
@@ -33,46 +66,15 @@ Machine Learning, Artificial Intelligence, Computational Neuroscience, Database 
 \end{rSection}
 
 %----------------------------------------------------------------------------------------
-%	WORK EXPERIENCE SECTION
-%----------------------------------------------------------------------------------------
-
-\begin{rSection}{Work \& Volunteer Experience}
-
-  {\bf Globant}, Remote \hfill {\em November 2020 - March 2022}
-  \\ {\em Software Engineer}
-  \begin{itemize}[leftmargin=*, topsep=-3pt] \itemsep -5pt
-    \item Create and integrate design plans for high-stake applications
-    \item Test and document thoroughly to ensure applications are high quality, accurate, and functional
-    \item Collaborate with team members and project owners to ship new features with a focus on simplicity, scalability, and reusability
-  \end{itemize}
-  
-  % FREELANCE SECTION
-  {\bf Freelance Sofware Engineer}, Remote \hfill {\em January 2020 - December 2020}
-  \\ {\em Full-stack Developer}
-  \begin{itemize}[leftmargin=*, topsep=-3pt] \itemsep -5pt
-    \item Co-developed platform for agricultural investments
-    % \item Node.js back-end, Vue.js front-end
-    \item Serverless infrastructure on AWS
-  \end{itemize}
-  
-  {\bf Shake-A-Leg Miami}, Miami, FL \hfill {\em August 2011 - September 2019}
-  \\ {\em Student Mentor (Volunteer)}
-  \begin{itemize}[leftmargin=*, topsep=-3pt] \itemsep -5pt
-    \item Mentored physically and developmentally challenged children, teaching them water safety skills and about the wildlife in Biscayne Bay
-    \item Logged over 1000 hours of community service
-  \end{itemize}
-  \end{rSection}
-
-%----------------------------------------------------------------------------------------
 %	TECHNICAL STRENGTHS SECTION
 %----------------------------------------------------------------------------------------
 
 \begin{rSection}{Technical Strengths}
 
   \begin{tabular}{ @{} >{\bfseries}l @{\hspace{6ex}} l }
-  Programming Languages \ & JavaScript, TypeScript, Python, C, R, Matlab, HTML, CSS \\
-  Software \& Tools & SQL, Git, Unix/Linux, Flask, \LaTeX, Photoshop, Vue, Jupyter \\
-  Cloud-Based Technologies & AWS, Docker, CircleCI
+    Programming Languages \ & JavaScript, TypeScript, Python, C, R, Matlab, HTML, CSS \\
+    Software \& Tools & SQL, Git, Unix/Linux, Flask, \LaTeX, Photoshop, Vue, Postgres \\
+    Cloud-Based Technologies & AWS, GCP, Docker, Kubernetes, Github Actions, CircleCI
   \end{tabular}
   
   \end{rSection}
