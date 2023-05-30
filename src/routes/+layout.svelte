@@ -5,3 +5,9 @@
 <Navbar />
 
 <slot></slot>
+
+<style>
+  :global(body) {
+		background: #f4f4f4;
+	}
+</style>

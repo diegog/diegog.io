@@ -1,8 +1,7 @@
 <script>
-	import Navbar from '../lib/components/navbar.svelte';
 	import Sketch from '../lib/components/sketch.svelte';
 	import Bio from '../lib/components/bio.svelte';
-	import Projects from '$lib/components/projects.svelte';
+	import Projects from '../lib/components/projects.svelte';
 </script>
 
 <div id="app">
@@ -15,17 +14,12 @@
 </div>
 
 <style>
-	:global(body) {
-		background: #f4f4f4;
-	}
 	#app {
 		font-family: Avenir, Helvetica, Arial, sans-serif;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 		text-align: center;
 		color: #2c3e50;
-		margin-top: 55px;
-		background: #f4f4f4;
 		max-width: 100%;
 		overflow-x: hidden;
 	}
