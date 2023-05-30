@@ -27,10 +27,10 @@
 </nav>
 
 <style>
-	 .navbar {
+	.navbar {
 		background: #f4f4f4;
-	 }
-  :global(body) {
-    margin-top: 55px;
+	}
+	:global(body) {
+		margin-top: 55px;
 	}
 </style>
