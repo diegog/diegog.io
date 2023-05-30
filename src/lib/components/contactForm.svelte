@@ -8,7 +8,11 @@
 
 	async function submitForm(e: Event) {
 		e.preventDefault();
+		const button = e.currentTarget as HTMLButtonElement;
+		button.disabled = true;
+
 		if (!name || !email || !message) {
+			button.disabled = false;
 			return false;
 		}
 		const formData = {
@@ -28,6 +32,7 @@
 			goto('/');
 			return true;
 		} catch (error) {
+			button.disabled = false;
 			return false;
 		}
 	}
