@@ -21,6 +21,9 @@
 				<li class="nav-item">
 					<a class="nav-link" href="/resume.pdf">Resume</a>
 				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="https://github.com/diegog">Github</a>
+				</li>
 			</ul>
 		</div>
 	</div>
