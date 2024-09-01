@@ -16,9 +16,6 @@
 		<div class="justify-content-end collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="nav-link" href="/radio">Radio</a>
-				</li>
-				<li class="nav-item">
 					<a class="nav-link" href="/contact">Contact</a>
 				</li>
 				<li class="nav-item">
