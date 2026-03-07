@@ -1,9 +1,17 @@
 <script>
+  import banyanBreadsIcon from '../images/banyan_breads.png';
 	import manzoIcon from '../images/manzo_icon.png';
 	import diegogIcon from '../images/diegog_icon.gif';
 	import recipesIcon from '../images/recipes_icon.png';
 
 	const projects = [
+    {
+      name: 'banyanbreads.com',
+      url: 'https://banyanbreads.com',
+      icon: banyanBreadsIcon,
+      description:
+        'An ecomerce website built for the Banyan Breads micro bakery in Salida. Baker is able to manage their own menus/inventory and accept payment'
+    },
 		{
 			name: 'manatee.zone',
 			url: 'https://manatee.zone',
