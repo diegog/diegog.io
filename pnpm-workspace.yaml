@@ -1,0 +1,11 @@
+# pnpm blocks dependency build scripts by default. lefthook's postinstall
+# downloads its binary; biome, esbuild and sharp ship platform binaries.
+allowBuilds:
+  '@biomejs/biome': true
+  esbuild: true
+  lefthook: true
+  sharp: true
+
+# Don't run an implicit dependency check (and install) before every script.
+# Installs are explicit here: `pnpm install --frozen-lockfile`.
+verifyDepsBeforeRun: false

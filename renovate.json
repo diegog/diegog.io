@@ -1,0 +1,36 @@
+{
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"extends": ["config:recommended", ":dependencyDashboard", ":semanticCommits", "schedule:weekly"],
+	"labels": ["dependencies"],
+	"lockFileMaintenance": { "enabled": true },
+	"packageRules": [
+		{
+			"description": "Auto-merge low-risk updates once CI is green",
+			"matchUpdateTypes": ["minor", "patch"],
+			"matchCurrentVersion": "!/^0/",
+			"automerge": true
+		},
+		{
+			"description": "Next and React must move together",
+			"groupName": "next + react",
+			"matchPackageNames": [
+				"next",
+				"react",
+				"react-dom",
+				"@types/react",
+				"@types/react-dom",
+				"@next/third-parties"
+			]
+		},
+		{
+			"description": "Tailwind core and its PostCSS plugin are version-locked",
+			"groupName": "tailwind",
+			"matchPackageNames": ["tailwindcss", "@tailwindcss/postcss", "tw-animate-css"]
+		},
+		{
+			"description": "Playwright's package and its browsers ship in lockstep",
+			"groupName": "playwright",
+			"matchPackageNames": ["@playwright/test", "playwright"]
+		}
+	]
+}
