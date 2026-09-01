@@ -1,0 +1,20 @@
+# Hooks call the local binaries directly rather than going through `pnpm <script>`:
+# pnpm runs a dependency-status check before each script, which makes hooks slow
+# and brittle inside git's environment.
+
+pre-commit:
+  parallel: true
+  jobs:
+    - name: biome
+      glob: '*.{js,jsx,ts,tsx,json,jsonc,css}'
+      run: node_modules/.bin/biome check --write --no-errors-on-unmatched {staged_files}
+      stage_fixed: true
+
+pre-push:
+  parallel: false
+  jobs:
+    - name: typecheck
+      # next typegen writes next-env.d.ts + .next/types, which tsc needs
+      run: node_modules/.bin/next typegen && node_modules/.bin/tsc --noEmit
+    - name: test
+      run: node_modules/.bin/vitest run
