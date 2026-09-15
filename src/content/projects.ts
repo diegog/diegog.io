@@ -1,17 +1,34 @@
 import type { StaticImageData } from 'next/image';
 import banyanBreadsIcon from '@/images/banyan_breads.webp';
 import diegogIcon from '@/images/diegog_icon.webp';
+import homelabIcon from '@/images/homelab_icon.webp';
+import macMiniCiIcon from '@/images/mac_mini_ci_icon.webp';
 import manzoIcon from '@/images/manzo_icon.webp';
 import recipesIcon from '@/images/recipes_icon.webp';
 
 export type Project = {
 	name: string;
+	/** absolute for external projects, or a site-relative path like `/homelab` */
 	url: string;
 	icon: StaticImageData;
 	description: string;
 };
 
 export const projects: readonly Project[] = [
+	{
+		name: 'homelab',
+		url: '/homelab',
+		icon: homelabIcon,
+		description:
+			'Three Proxmox nodes, a Kubernetes cluster, and a NAS in an IKEA side table. Everything provisioned with Terraform and Ansible, deployed with Kustomize from CI. A write-up of what is in it, how it is built, and what runs on it'
+	},
+	{
+		name: 'mac-mini-ci',
+		url: 'https://github.com/diegog/mac-mini-ci',
+		icon: macMiniCiIcon,
+		description:
+			'A Mac mini on a shelf that builds, signs, and ships your software. Turns a headless Mac mini into a self-hosted GitHub Actions runner where every job runs in a throwaway macOS VM. Machine setup with pyinfra, GitHub config with Pulumi'
+	},
 	{
 		name: 'banyanbreads.com',
 		url: 'https://banyanbreads.com',

@@ -1,10 +1,10 @@
 # diegog.io
 
-Personal site — a p5.js hero sketch, a short bio, a project list, and a contact
-form that delivers to Discord.
+Personal site — a p5.js hero sketch, a short bio, a project list, a homelab
+write-up, and a contact form that delivers to Discord.
 
-Built with **Next.js 16** (App Router, React 19), **Tailwind v4** + **shadcn/ui**
-on Base UI, linted and formatted by **Biome**, tested with **Vitest** and
+Built with **Next.js 16** (App Router, React 19, MDX), **Tailwind v4** +
+**shadcn/ui** on Base UI, linted and formatted by **Biome**, tested with **Vitest** and
 **Playwright**, deployed on **Vercel**.
 
 ## Requirements
@@ -49,6 +49,7 @@ let anyone post to the channel.
 | `pnpm test` / `pnpm test:watch` | Vitest unit tests |
 | `pnpm test:coverage` | Vitest with V8 coverage |
 | `pnpm test:e2e` / `pnpm test:e2e:ui` | Playwright (builds and serves first) |
+| `pnpm icons` | Vendor the dashboardicons.com icons referenced by `src/content/homelab.ts` |
 
 `typecheck` runs `next typegen` first on purpose: `next-env.d.ts` and
 `.next/types/*` are generated, gitignored, and required by `tsc` — without them a
@@ -60,10 +61,13 @@ fresh clone fails to typecheck on the image imports.
 src/
 ├── app/             routes (App Router); contact/ holds its Server Action
 ├── components/      React components; ui/ is shadcn-generated
-├── content/         site copy and the project list, as typed modules
+├── content/         site copy as typed modules, plus long-form pages as .mdx
 ├── images/          image sources — imported, never referenced from public/
-└── lib/             framework-free logic (Discord delivery, the p5 sketch)
+│   └── homelab/     vendored service icons + a generated index (see `pnpm icons`)
+├── lib/             framework-free logic (Discord delivery, the p5 sketch)
+└── mdx-components.tsx  element styles applied to every MDX file
 e2e/                 Playwright specs
+scripts/             one-off dev tooling, run directly with Node
 ```
 
 A few conventions worth knowing:
@@ -77,6 +81,16 @@ A few conventions worth knowing:
   `mobile-nav`, `contact-form` and `sketch` are `"use client"`.
 - **p5 is dynamically imported** inside an effect so its ~1.4 MB never lands in
   the initial bundle. A Playwright test enforces this.
+- **Long-form pages are MDX in `src/content/`**, rendered by a thin `page.tsx`
+  that owns the route's metadata and chrome. Structured lists (hardware, the
+  service grid) stay in typed `.ts` modules and are rendered by components
+  imported into the MDX. remark plugins are named as strings in
+  `next.config.ts` so they work under Turbopack.
+- **Service icons are vendored, not hotlinked.** `src/content/homelab.ts`
+  references icons by their dashboardicons.com slug; `pnpm icons` fetches the
+  SVGs into `src/images/homelab/` and regenerates `index.ts`, whose `IconSlug`
+  type makes an unfetched slug a typecheck error. This keeps the "no
+  third-party requests" guarantee that Playwright enforces.
 
 ## Testing
 

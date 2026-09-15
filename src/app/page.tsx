@@ -10,7 +10,7 @@ export const revalidate = 86400;
 
 export default function HomePage() {
 	return (
-		<main className="flex flex-col gap-6 font-prose text-prose">
+		<main className="flex flex-col gap-6 pb-16 font-prose text-prose">
 			<Sketch />
 			<Bio />
 			<Projects />

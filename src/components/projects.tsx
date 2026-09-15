@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { projects } from '@/content/projects';
 
 export function Projects() {
@@ -9,7 +10,7 @@ export function Projects() {
 				<ul className="overflow-hidden rounded-md border border-black/[0.125] text-foreground">
 					{projects.map((project) => (
 						<li key={project.url} className="border-black/[0.125] not-first:border-t">
-							<a
+							<Link
 								href={project.url}
 								className="flex items-center gap-6 bg-white px-4 py-[22px] transition-colors hover:bg-[#f8f9fa]"
 							>
@@ -25,7 +26,7 @@ export function Projects() {
 									</h2>
 									<p className="text-left">{project.description}</p>
 								</div>
-							</a>
+							</Link>
 						</li>
 					))}
 				</ul>

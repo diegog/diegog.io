@@ -11,7 +11,7 @@ const staticImageImports = (): Plugin => ({
 	enforce: 'pre',
 	load(id: string) {
 		const file = id.split('?')[0] ?? '';
-		if (!/\.(png|jpe?g|webp|avif|gif)$/.test(file)) return null;
+		if (!/\.(png|jpe?g|webp|avif|gif|svg)$/.test(file)) return null;
 		const src = `/_next/static/media/${basename(file)}`;
 		return `export default ${JSON.stringify({ src, width: 180, height: 180, blurDataURL: src })}`;
 	}

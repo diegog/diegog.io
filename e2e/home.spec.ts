@@ -22,6 +22,8 @@ test.describe('home page content', () => {
 		await expect(page.getByRole('heading', { name: 'Projects' })).toBeVisible();
 
 		const expected = [
+			['homelab', '/homelab'],
+			['mac-mini-ci', 'https://github.com/diegog/mac-mini-ci'],
 			['banyanbreads.com', 'https://banyanbreads.com'],
 			['manatee.zone', 'https://manatee.zone'],
 			['diegog.io (this website)', 'https://diegog.io'],
@@ -67,7 +69,7 @@ test.describe('home page content', () => {
 		await page.waitForLoadState('networkidle');
 
 		const srcs = await page.evaluate(() => [...document.images].map((i) => i.currentSrc));
-		expect(srcs.length).toBe(5);
+		expect(srcs.length).toBe(7);
 		for (const src of srcs) {
 			expect(src, 'every image should go through /_next/image').toContain('/_next/image');
 		}

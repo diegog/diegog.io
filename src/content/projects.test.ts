@@ -3,12 +3,13 @@ import { projects } from './projects';
 
 describe('projects content', () => {
 	it('lists every project with the fields the UI renders', () => {
-		expect(projects).toHaveLength(4);
+		expect(projects).toHaveLength(6);
 
 		for (const project of projects) {
 			expect(project.name.trim()).not.toBe('');
 			expect(project.description.trim()).not.toBe('');
-			expect(project.url).toMatch(/^https:\/\//);
+			// external projects are absolute; pages on this site are root-relative
+			expect(project.url).toMatch(/^(https:\/\/|\/)/);
 			// static import, not a bare string path — this is what next/image needs
 			expect(project.icon.src).toBeTypeOf('string');
 			expect(project.icon.src).not.toBe('');

@@ -14,6 +14,7 @@ export type NavLink = {
 };
 
 export const navLinks: readonly NavLink[] = [
+	{ href: '/homelab', label: 'Homelab' },
 	{ href: '/contact', label: 'Contact' },
 	{ href: site.github, label: 'Github', external: true }
 ];
