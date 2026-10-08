@@ -57,9 +57,9 @@ On top of that sits a vanilla Kubernetes cluster (kubeadm, not k3s) on six Debia
 workers, one of each per Proxmox node, with Cilium as the CNI. This replaces the k3s cluster I built on four Raspberry Pis
 back in 2022, which is where I first got hooked on running Kubernetes at home.
 
-Not everything goes in the cluster though. The rule I settled on: **ingress and identity live on their own VMs, everything
-else lives in Kubernetes.** The reverse proxy and the identity provider are the two things I need working *while* I fix a
-broken cluster, so they can't depend on it. Each of those VMs also gets its own SSH key, so compromising one doesn't unlock
+Not everything goes in the cluster though. The rule I settled on: **ingress, identity and the thing that deploys the
+cluster live on their own VMs, everything else lives in Kubernetes.** The reverse proxy, the identity provider and GitLab
+are the things I need working *while* I fix a broken cluster, so they can't depend on it. Each of those VMs also gets its own SSH key, so compromising one doesn't unlock
 anything else. There are a couple of other "pets" on VMs for hardware reasons: Emby, because it needs the Intel iGPU passed
 through for transcoding, and Home Assistant OS, because it is an appliance image that does its own thing.
 
@@ -75,20 +75,43 @@ keys can never drift from what Terraform actually created. One playbook takes fr
 imperative step. A separate role prepares the hypervisors themselves: IOMMU and `vfio` binding for the iGPU, and making the
 bridges VLAN-aware.
 
-Secrets never touch git. Anything Ansible needs is in Ansible Vault; Kubernetes secrets are kept out of the tree
-entirely.
+Secrets never touch git in plaintext. Anything Ansible needs is in Ansible Vault; Kubernetes secrets are committed
+encrypted with SOPS, and only the cluster and my own key can decrypt them. Terraform's state lives in GitLab, locked and
+versioned, not in a file on my desktop.
 
 ### Deploying applications
 
-Every workload is a plain Kustomize manifest, split into an infrastructure layer (Traefik, metrics-server, storage
-drivers, CloudNativePG, the snapshot controller) and an applications layer. A single `kubectl apply -k` deploys all of
-it; the only thing not in there is Cilium, since pods can't schedule until a CNI exists.
+Every workload is a plain Kustomize manifest, split into an infrastructure layer (Traefik, storage drivers, the
+descheduler) and an applications layer, with each app or stack in its own namespace. Third-party add-ons like
+CloudNativePG, metrics-server and the snapshot controller come straight from their upstream repos, pinned to release
+tags. The only thing not in there is Cilium, since pods can't schedule until a CNI exists.
 
-CI runs it. A GitHub Actions workflow connects to my LAN over WireGuard, runs `terraform plan` on every pull request, and on
-merge to `main` runs `terraform apply`, `kubectl apply -k`, and the Ansible playbook for the edge proxy. A manual dispatch
-can also plan, apply, destroy, or bootstrap the cluster from scratch.
+[Flux](https://fluxcd.io) deploys all of it from `main`: **merging is the deploy.** It applies the infrastructure layer,
+waits for it to be healthy, then applies the applications, and puts back anything I change by hand. Nothing outside the
+cluster holds credentials to push into it.
 
-Adding a new app is a Deployment, a Service and an Ingress in a new directory, and a PR.
+Adding a new app is a Deployment, a Service and an Ingress in a new directory, and a merge request.
+
+### GitLab and CI
+
+The repo lives on a self-hosted [GitLab](https://about.gitlab.com) CE instance, along with a few of my other projects. It
+runs on its own VM from the official Linux package rather than in the cluster: it is what deploys the cluster, so it can't
+depend on it. Sign-in goes through Authentik, and the local admin login stays on as the break-glass way in for when
+Authentik itself is down.
+
+The runners are the opposite. GitLab Runner's Kubernetes executor spins up every job as a throwaway pod in the cluster,
+and there are two of them at two trust levels. The general runner takes jobs from any branch and runs them in a
+locked-down namespace: no privileged pods, no Kubernetes API token, a resource quota, and a network policy that allows the
+internet but nothing else on the LAN. The deploy runner is protected, so it only takes jobs from `main`. It is the only
+one that can reach Proxmox and SSH into the VMs, and it gets its credentials per job as protected CI variables.
+
+Every merge request gets validated: Terraform formatting and validation, an Ansible syntax check of every playbook, and
+the full Kustomize tree rendered and checked against the Kubernetes schemas, including a check that no secret was
+committed unencrypted. On `main`, `terraform plan` runs automatically, and applying *that exact plan* is a manual button.
+The Ansible playbooks for the standalone VMs work the same way, with a dry run before each apply. A nightly schedule runs
+both in check mode and fails if anything real has drifted from `main`, and [Renovate](https://docs.renovatebot.com) opens
+a merge request for every dependency update. Anything that could reboot the node a job is running on, like bootstrapping
+the cluster or upgrading the hypervisors, stays on my desktop.
 
 ## The Mac mini
 
@@ -145,7 +168,8 @@ The UDM Pro handles routing, VLANs and the firewall rules between them. I own `g
 under it. DNS points those at an "edge" VM running Traefik, which is the only thing exposed to the internet: it terminates
 TLS with wildcard certificates from Let's Encrypt (Cloudflare DNS-01 challenge), forces HTTPS, and routes each hostname to
 the right place: the in-cluster Traefik for Kubernetes workloads, or straight to the VM for the handful of services outside
-it. It also load-balances the Kubernetes API across the three control planes and passes LDAP through to Authentik. Its
+it. It also load-balances the Kubernetes API across the three control planes, passes LDAP through to Authentik, and
+forwards Git over SSH to GitLab. Its
 backend IPs are generated from Terraform outputs, so adding a worker updates the proxy automatically.
 
 Authentication is [Authentik](https://goauthentik.io). App UIs sit behind Traefik forward-auth, so I get single sign-on with
@@ -219,6 +243,9 @@ the original builds did:
   nobody (including me) knew exactly how. Now the config is in git and the backend IPs can't drift.
 - **A dedicated VM for Standard Notes → a StatefulSet in the cluster** once I had block storage that could safely run a
   database. It freed the VM and made the rule "apps go in-cluster" actually true.
+- **A GitHub Actions workflow running `kubectl apply` → Flux pulling from a self-hosted GitLab.** CI used to tunnel
+  into my LAN over WireGuard to push changes. Now the cluster pulls its own state from git and undoes hand edits, and
+  the jobs that do touch infrastructure run on a protected runner inside the network.
 - **Single-node bridges → cluster-wide SDN vnets** for the isolated networks, so the gateway VMs can migrate between nodes
   like everything else.
 

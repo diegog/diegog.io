@@ -106,6 +106,9 @@ export const services: readonly Service[] = [
 		url: 'https://github.com/features/actions',
 		category: 'Platform'
 	},
+	{ name: 'GitLab', icon: 'gitlab', url: 'https://about.gitlab.com', category: 'Platform' },
+	{ name: 'Flux', icon: 'flux-cd', url: 'https://fluxcd.io', category: 'Platform' },
+	{ name: 'Renovate', icon: 'renovate', url: 'https://docs.renovatebot.com', category: 'Platform' },
 
 	// Networking & identity
 	{ name: 'UniFi', icon: 'unifi', url: 'https://ui.com', category: 'Networking & identity' },

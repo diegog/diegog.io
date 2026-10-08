@@ -9,7 +9,9 @@ import icon_cloudflare from './cloudflare.svg';
 import icon_codex from './codex.svg';
 import icon_debianLinux from './debian-linux.svg';
 import icon_emby from './emby.svg';
+import icon_fluxCd from './flux-cd.svg';
 import icon_github from './github.svg';
+import icon_gitlab from './gitlab.svg';
 import icon_grafana from './grafana.svg';
 import icon_homeAssistant from './home-assistant.svg';
 import icon_homepage from './homepage.png';
@@ -24,6 +26,7 @@ import icon_prometheus from './prometheus.svg';
 import icon_protonVpn from './proton-vpn.svg';
 import icon_proxmox from './proxmox.svg';
 import icon_radarr from './radarr.svg';
+import icon_renovate from './renovate.svg';
 import icon_sonarr from './sonarr.svg';
 import icon_standardNotes from './standard-notes.svg';
 import icon_synapse from './synapse.svg';
@@ -45,7 +48,9 @@ export const icons = {
 	codex: icon_codex,
 	'debian-linux': icon_debianLinux,
 	emby: icon_emby,
+	'flux-cd': icon_fluxCd,
 	github: icon_github,
+	gitlab: icon_gitlab,
 	grafana: icon_grafana,
 	'home-assistant': icon_homeAssistant,
 	homepage: icon_homepage,
@@ -60,6 +65,7 @@ export const icons = {
 	'proton-vpn': icon_protonVpn,
 	proxmox: icon_proxmox,
 	radarr: icon_radarr,
+	renovate: icon_renovate,
 	sonarr: icon_sonarr,
 	'standard-notes': icon_standardNotes,
 	synapse: icon_synapse,
