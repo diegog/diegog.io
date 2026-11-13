@@ -31,6 +31,11 @@
 			"description": "Playwright's package and its browsers ship in lockstep",
 			"groupName": "playwright",
 			"matchPackageNames": ["@playwright/test", "playwright"]
+		},
+		{
+			"description": "p5 2.4 fetches FES translations from cdn.jsdelivr.net on load, breaking the no-third-party-requests guarantee; revisit when that can be disabled",
+			"matchPackageNames": ["p5"],
+			"allowedVersions": "<2.4.0"
 		}
 	]
 }

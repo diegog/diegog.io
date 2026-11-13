@@ -3,7 +3,8 @@ import Homelab from '@/content/homelab.mdx';
 
 export const metadata: Metadata = {
 	title: 'Homelab',
-	description: "What's in Diego Garcia's homelab, how it's built, and what runs on it."
+	description: "What's in Diego Garcia's homelab, how it's built, and what runs on it.",
+	alternates: { canonical: '/homelab' }
 };
 
 export default function HomelabPage() {
