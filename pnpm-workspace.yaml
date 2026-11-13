@@ -1,7 +1,7 @@
 # pnpm blocks dependency build scripts by default. lefthook's postinstall
 # downloads its binary; biome, esbuild and sharp ship platform binaries.
 allowBuilds:
-  '@biomejs/biome': true
+  "@biomejs/biome": true
   esbuild: true
   lefthook: true
   sharp: true

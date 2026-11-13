@@ -3,7 +3,8 @@ import { ContactForm } from '@/components/contact-form';
 
 export const metadata: Metadata = {
 	title: 'Contact',
-	description: 'Get in touch with Diego Garcia.'
+	description: 'Get in touch with Diego Garcia.',
+	alternates: { canonical: '/contact' }
 };
 
 export default function ContactPage() {

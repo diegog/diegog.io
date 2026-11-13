@@ -30,8 +30,8 @@ The contact form is the only thing that needs configuration. Without
 
 ### Environment
 
-| Variable | Scope | Purpose |
-| --- | --- | --- |
+| Variable              | Scope           | Purpose                                                         |
+| --------------------- | --------------- | --------------------------------------------------------------- |
 | `DISCORD_WEBHOOK_URL` | **server only** | Discord incoming webhook that contact submissions are posted to |
 
 It must **not** be prefixed `NEXT_PUBLIC_` — that would ship it to the browser and
@@ -39,17 +39,17 @@ let anyone post to the channel.
 
 ## Scripts
 
-| Command | Does |
-| --- | --- |
-| `pnpm dev` | Dev server |
-| `pnpm build` / `pnpm start` | Production build / serve it |
-| `pnpm lint` / `pnpm lint:fix` | Biome check (lint + format) |
-| `pnpm format` | Format only, no lint |
-| `pnpm typecheck` | `next typegen` then `tsc --noEmit` |
-| `pnpm test` / `pnpm test:watch` | Vitest unit tests |
-| `pnpm test:coverage` | Vitest with V8 coverage |
-| `pnpm test:e2e` / `pnpm test:e2e:ui` | Playwright (builds and serves first) |
-| `pnpm icons` | Vendor the dashboardicons.com icons referenced by `src/content/homelab.ts` |
+| Command                              | Does                                                                       |
+| ------------------------------------ | -------------------------------------------------------------------------- |
+| `pnpm dev`                           | Dev server                                                                 |
+| `pnpm build` / `pnpm start`          | Production build / serve it                                                |
+| `pnpm lint` / `pnpm lint:fix`        | Biome check (lint + format)                                                |
+| `pnpm format`                        | Format only, no lint                                                       |
+| `pnpm typecheck`                     | `next typegen` then `tsc --noEmit`                                         |
+| `pnpm test` / `pnpm test:watch`      | Vitest unit tests                                                          |
+| `pnpm test:coverage`                 | Vitest with V8 coverage                                                    |
+| `pnpm test:e2e` / `pnpm test:e2e:ui` | Playwright (builds and serves first)                                       |
+| `pnpm icons`                         | Vendor the dashboardicons.com icons referenced by `src/content/homelab.ts` |
 
 `typecheck` runs `next typegen` first on purpose: `next-env.d.ts` and
 `.next/types/*` are generated, gitignored, and required by `tsc` — without them a
@@ -130,4 +130,3 @@ build, then Playwright on every PR.
 `DISCORD_WEBHOOK_URL` needs setting in the Vercel project (Production, plus
 Preview if previews should deliver), and the project's Node version must match
 `.nvmrc` or `engine-strict` will fail the build.
-
